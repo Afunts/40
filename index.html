@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Ссылки-кнопки | Сетка 40 элементов</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f2c2c 0%, #1a3a32 100%);
+            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Inter', sans-serif;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .glass-panel {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 248, 235, 0.94);
+            backdrop-filter: blur(3px);
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255,255,255,0.5);
+            padding: 2rem 1.8rem;
+            transition: all 0.2s;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #1e5a48, #0f3a2e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.3px;
+            display: inline-block;
+            border-left: 6px solid #2b8a68;
+            padding-left: 1rem;
+        }
+
+        .sub {
+            color: #2c6b58;
+            margin-bottom: 1.8rem;
+            font-weight: 500;
+            border-bottom: 1px dashed #c8dfd4;
+            padding-bottom: 0.7rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* Горизонтальная сетка — кнопки в ряды */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, auto));
+            gap: 1rem;
+            justify-content: start;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Стиль каждой кнопки-ссылки */
+        .btn-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background: white;
+            border-radius: 1.2rem;
+            padding: 0.8rem 0.4rem;
+            transition: all 0.2s ease;
+            border: 1px solid #e2ddd4;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            min-width: 85px;
+            text-align: center;
+        }
+
+        /* Номер кнопки — крупный, в круге */
+        .button-number {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: #1e5a48;
+            color: white;
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1.5rem;
+            margin-bottom: 6px;
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,0.08), 0 3px 8px rgba(0,0,0,0.1);
+            transition: 0.1s linear;
+        }
+
+        .button-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1a3a2e;
+            letter-spacing: -0.2px;
+            text-transform: uppercase;
+            background: #eff5f2;
+            padding: 4px 8px;
+            border-radius: 2rem;
+            width: fit-content;
+            margin-top: 4px;
+        }
+
+        /* Ховер-эффекты */
+        .btn-link:hover {
+            background: #fffef7;
+            border-color: #9ec0b2;
+            box-shadow: 0 12px 18px -10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .btn-link:hover .button-number {
+            background: #2f8066;
+            transform: scale(0.96);
+        }
+
+        .btn-link:hover .button-text {
+            background: #e0f0e9;
+            color: #0d4a3a;
+        }
+
+        /* Фокус для доступности */
+        .btn-link:focus-visible {
+            outline: 3px solid #2b8a68;
+            outline-offset: 3px;
+            border-radius: 1.2rem;
+        }
+
+        /* Подвал */
+        .footer-note {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #2a6b58;
+            background: #e6f0ec;
+            padding: 0.8rem;
+            border-radius: 2rem;
+            font-weight: 500;
+        }
+
+        /* Адаптивность: на маленьких экранах кнопки подстраиваются, но остаются в рядах */
+        @media (max-width: 650px) {
+            body {
+                padding: 1rem;
+            }
+            .glass-panel {
+                padding: 1.2rem;
+            }
+            .buttons-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, auto));
+                gap: 0.8rem;
+            }
+            .btn-link {
+                padding: 0.6rem 0.2rem;
+                min-width: 70px;
+            }
+            .button-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            .button-text {
+                font-size: 0.65rem;
+                padding: 2px 5px;
+            }
+        }
+
+        /* Анимация появления */
+        @keyframes softPop {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .btn-link {
+            animation: softPop 0.25s ease forwards;
+            opacity: 0;
+        }
+
+        /* небольшие задержки для плавности (до 40) */
+        .btn-link:nth-child(1) { animation-delay: 0.01s; }
+        .btn-link:nth-child(2) { animation-delay: 0.02s; }
+        .btn-link:nth-child(3) { animation-delay: 0.03s; }
+        .btn-link:nth-child(4) { animation-delay: 0.04s; }
+        .btn-link:nth-child(5) { animation-delay: 0.05s; }
+        .btn-link:nth-child(6) { animation-delay: 0.06s; }
+        .btn-link:nth-child(7) { animation-delay: 0.07s; }
+        .btn-link:nth-child(8) { animation-delay: 0.08s; }
+        .btn-link:nth-child(9) { animation-delay: 0.09s; }
+        .btn-link:nth-child(10) { animation-delay: 0.10s; }
+        .btn-link:nth-child(11) { animation-delay: 0.11s; }
+        .btn-link:nth-child(12) { animation-delay: 0.12s; }
+        .btn-link:nth-child(13) { animation-delay: 0.13s; }
+        .btn-link:nth-child(14) { animation-delay: 0.14s; }
+        .btn-link:nth-child(15) { animation-delay: 0.15s; }
+        .btn-link:nth-child(16) { animation-delay: 0.16s; }
+        .btn-link:nth-child(17) { animation-delay: 0.17s; }
+        .btn-link:nth-child(18) { animation-delay: 0.18s; }
+        .btn-link:nth-child(19) { animation-delay: 0.19s; }
+        .btn-link:nth-child(20) { animation-delay: 0.20s; }
+        .btn-link:nth-child(21) { animation-delay: 0.21s; }
+        .btn-link:nth-child(22) { animation-delay: 0.22s; }
+        .btn-link:nth-child(23) { animation-delay: 0.23s; }
+        .btn-link:nth-child(24) { animation-delay: 0.24s; }
+        .btn-link:nth-child(25) { animation-delay: 0.25s; }
+        .btn-link:nth-child(26) { animation-delay: 0.26s; }
+        .btn-link:nth-child(27) { animation-delay: 0.27s; }
+        .btn-link:nth-child(28) { animation-delay: 0.28s; }
+        .btn-link:nth-child(29) { animation-delay: 0.29s; }
+        .btn-link:nth-child(30) { animation-delay: 0.30s; }
+        .btn-link:nth-child(31) { animation-delay: 0.31s; }
+        .btn-link:nth-child(32) { animation-delay: 0.32s; }
+        .btn-link:nth-child(33) { animation-delay: 0.33s; }
+        .btn-link:nth-child(34) { animation-delay: 0.34s; }
+        .btn-link:nth-child(35) { animation-delay: 0.35s; }
+        .btn-link:nth-child(36) { animation-delay: 0.36s; }
+        .btn-link:nth-child(37) { animation-delay: 0.37s; }
+        .btn-link:nth-child(38) { animation-delay: 0.38s; }
+        .btn-link:nth-child(39) { animation-delay: 0.39s; }
+        .btn-link:nth-child(40) { animation-delay: 0.40s; }
+
+        /* Доп. стиль для пояснения количества рядов */
+        .info-badge {
+            background: #d4e9e2;
+            border-radius: 3rem;
+            padding: 0.2rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1d5e4a;
+            display: inline-block;
+            margin-left: 0.8rem;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div class="glass-panel">
+    <header style="margin-bottom: 1.5rem;">
+        <h1>📌 Панель ссылок <span class="info-badge">сетка 4x10 / адаптивные ряды</span></h1>
+        <div class="sub">40 кликабельных кнопок — каждая ссылка открывается в новой вкладке. Расположены горизонтальными рядами.</div>
+    </header>
+
+    <div class="buttons-grid" id="buttonsGrid">
+        <!-- JavaScript сгенерирует 40 кнопок с нужными ссылками -->
+    </div>
+    
+    <div class="footer-note">
+        ⚡ Все кнопки кликабельны → переход по уникальной ссылке в новой вкладке (target="_blank").<br>
+        🧩 Кнопки выстроены в ряды: при ширине экрана помещается от 5 до 10 кнопок в ряду, автоматически переносятся на следующую строку.
+        <span style="display: inline-block; margin-top: 6px; font-size: 0.75rem;">✓ 40 ссылок, пронумерованы от 1 до 40</span>
+    </div>
+</div>
+
+<script>
+    // ТОЧНЫЙ СПИСОК ИЗ 40 ССЫЛОК (предоставленный пользователем)
+    const rawUrls = [
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1107976423&auth_key=8d62f253bb0892a25efc1063c2d4e2b0",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1107912869&auth_key=6effacd9efa552e4a413f8f5c60e4aeb",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108554193&auth_key=030cdeca4f7dd3053053b4cec0f2f180",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108642840&auth_key=dc1f80420b0db8c63a508e8f7f75d56c",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1107912836&auth_key=809a0416e2e61233d5424aa8db06c888",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1107930214&auth_key=ef9dde11d9994263c9645c8830716431",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1107960374&auth_key=a60967e8fb0e6496982cb151984a5c25",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1107846887&auth_key=1b0ac621c0c032935e36bd56581be51f",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1107925079&auth_key=51a0e533f598f57a8f488196e0c545fb",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1107969740&auth_key=6640f3ded26359af67607219ff965e7a",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108820817&auth_key=fb893b94ff8ccc1bedad19f31bdd60ff",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108995111&auth_key=5ca0abccfcbbc11d73f5cf57d695b7df",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108995061&auth_key=16bca6518398f8b6da82a8cdad743269",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108994792&auth_key=d62f04e0e13ed859ba3a3ec652549113",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108995035&auth_key=74bb3ad686905a537695a20a13540d0a",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108820026&auth_key=ff7a24f02d35cf46579a455156f17da7",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108996067&auth_key=9289852918577d167e3e56f16fdd1715",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108994791&auth_key=f4c4a7e8395d41fb15102edf611a5895",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108996038&auth_key=ae919831248a8828be604a087ae5aea6",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108994800&auth_key=1dd865db6db736df9cd0dcdf65d50b49",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109132583&auth_key=686ce064e0c1ced97a8934411ab49525",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1105777351&auth_key=c7f630c9d4bfa08fc166c585d1b3c026",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109131499&auth_key=5b95dd6f733bdf03f0cf93567fde72ef",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=200000522997&auth_key=62858ea16c53eb27b253aeef6ebce6e6",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1108204275&auth_key=ad3403d68982d91afa76afe5d6d36b5f",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1106207894&auth_key=856a3f1e3e3280d67000c35448720858",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=200000522999&auth_key=352a29cebc97c8d1cbe8f4d459511f69",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109092403&auth_key=6e565660d02eefe725bce59f3b86ea9f",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1081292096&auth_key=3af3e301b9a9edf19f40862d104661a6",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109046797&auth_key=d4ae172df944364d436d5309c722ec27",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109091788&auth_key=135c8743900c9f804a1693374c7a419b",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109134183&auth_key=8405f30eb6331d00d071b065e8af60bd",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109117145&auth_key=2cb6f781246fea31c249068af2393ce7",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109104791&auth_key=077bdb1dd60188e4b8caa2bb84cb09e6",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109154394&auth_key=bbbd8ece36a9a067855d86a788f95765",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109082818&auth_key=82389822abe87a886d874464f7d598b3",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109076817&auth_key=a81b5319281b5bcd87a50a8e41aa48f8",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109104212&auth_key=f2ac8781f10dfddd1199bf3d580b1e08",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109075139&auth_key=5b4d14faae9511e78aa7c2ff4d067c1e",
+        "https://socialfog.ru/swf/aLdrVKpoolCr.https.html?api_url=&api_id=1979972&viewer_id=1109156240&auth_key=6ee60434012b32958c6558440ded1173"
+    ];
+
+    // Проверка количества
+    console.log(`🔗 Генерация сетки: получено ${rawUrls.length} ссылок (ожидалось 40)`);
+
+    const container = document.getElementById('buttonsGrid');
+    if (!container) {
+        console.error("Контейнер .buttons-grid не найден");
+    } else {
+        container.innerHTML = ''; // очистка на всякий случай
+        
+        // Создаем кнопки
+        rawUrls.forEach((url, idx) => {
+            const number = idx + 1;  // от 1 до 40
+            
+            // Создаем элемент <a> — это будет кликабельная кнопка-ссылка
+            const buttonLink = document.createElement('a');
+            buttonLink.href = url;
+            buttonLink.target = '_blank';
+            buttonLink.rel = 'noopener noreferrer';
+            buttonLink.className = 'btn-link';
+            
+            // Внутренняя структура: номер + подпись
+            const numberSpan = document.createElement('div');
+            numberSpan.className = 'button-number';
+            numberSpan.textContent = number;
+            
+            const textSpan = document.createElement('div');
+            textSpan.className = 'button-text';
+            textSpan.textContent = `ссылка ${number}`;
+            
+            buttonLink.appendChild(numberSpan);
+            buttonLink.appendChild(textSpan);
+            
+            container.appendChild(buttonLink);
+        });
+        
+        // Небольшое украшение: если количество ссылок не 40, выведем предупреждение в подвале
+        const footerNote = document.querySelector('.footer-note');
+        if (rawUrls.length !== 40 && footerNote) {
+            const warnBlock = document.createElement('div');
+            warnBlock.style.marginTop = '8px';
+            warnBlock.style.color = '#b34e3a';
+            warnBlock.style.fontWeight = 'bold';
+            warnBlock.style.fontSize = '0.8rem';
+            warnBlock.textContent = `⚠️ Загружено ${rawUrls.length} ссылок (ожидалось 40). Отображены все доступные.`;
+            footerNote.appendChild(warnBlock);
+        } else if (rawUrls.length === 40 && footerNote) {
+            const successMsg = document.createElement('div');
+            successMsg.style.marginTop = '8px';
+            successMsg.style.fontSize = '0.7rem';
+            successMsg.style.opacity = '0.8';
+            successMsg.innerHTML = '✅ 40 кнопок сгенерировано. Каждая ссылка ведёт на уникальный URL. Кнопки расположены в ряды — по горизонтали.';
+            footerNote.appendChild(successMsg);
+        }
+        
+        // Дополнительная функция: при клике на любую кнопку, если ссылка невалидная — но они все валидные.
+        // Просто оставляем стандартное поведение.
+    }
+</script>
+</body>
+</html>
